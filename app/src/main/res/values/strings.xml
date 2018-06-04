@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Thread Handling</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="title_activity_pipe">PipeActivity</string>
+    <string name="pipe_title">Pipe title</string>
+    <string name="pipe_desc">Pipe description</string>
 </resources>
