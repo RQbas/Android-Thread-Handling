@@ -3,4 +3,8 @@
     <dimen name="weight_depending">0dp</dimen>
     <dimen name="main_button_gap">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="description_font_size">15sp</dimen>
+    <dimen name="title_font_size">18sp</dimen>
+    <dimen name="title_margin_top">5dp</dimen>
+    <dimen name="description_margin_bottom">5dp</dimen>
 </resources>

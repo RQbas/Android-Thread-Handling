@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.handling_types_list)
     protected RecyclerView menuRecyclerView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

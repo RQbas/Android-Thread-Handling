@@ -9,7 +9,7 @@ public class MenuButton {
     private Class<? extends AppCompatActivity> targetActivity;
 
 
-    public MenuButton(int titleID, int descriptionID, int iconID, Class<? extends AppCompatActivity> activity) {
+    MenuButton(int titleID, int descriptionID, int iconID, Class<? extends AppCompatActivity> activity) {
         this.iconID = iconID;
         this.targetActivity = activity;
         this.titleID = titleID;

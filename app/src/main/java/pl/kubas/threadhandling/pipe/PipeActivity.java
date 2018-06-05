@@ -14,7 +14,6 @@ public class PipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
 }
