@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".pipe.PipeActivity"
     tools:showIn="@layout/activity_pipe">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <include layout="@layout/content_pipe_output" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:layout_marginVertical="@dimen/border_margin_vertical"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <include
+                    layout="@layout/content_pipe_input"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/item_margin_horizontal"
+                    android:layout_marginStart="@dimen/border_margin_horizontal"
+                    android:layout_weight="0.67" />
+
+                <include
+                    layout="@layout/content_pipe_timer"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/border_margin_horizontal"
+                    android:layout_marginStart="@dimen/item_margin_horizontal"
+                    android:layout_weight="0.33" />
+            </LinearLayout>
+
+            <include layout="@layout/content_pipe_description" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

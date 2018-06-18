@@ -48,7 +48,7 @@
                 android:id="@+id/thread_type_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/description_margin_bottom"
+                android:layout_marginBottom="@dimen/item_margin_vertical"
                 android:text="@string/description"
                 android:textColor="@color/textSecondary"
                 android:textSize="@dimen/description_font_size" />

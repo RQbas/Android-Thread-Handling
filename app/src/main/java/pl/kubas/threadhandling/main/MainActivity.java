@@ -13,6 +13,7 @@ import pl.kubas.threadhandling.R;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @BindView(R.id.handling_types_list)
     protected RecyclerView menuRecyclerView;
 
