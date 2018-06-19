@@ -19,6 +19,10 @@
         <activity
             android:name=".pipe.PipeActivity"
             android:label="@string/title_activity_pipe"
+            android:theme="@style/MainTheme.NoActionBar" />
+        <activity
+            android:name=".messages.MessagePassingActivity"
+            android:label="@string/message_passing_title"
             android:theme="@style/MainTheme.NoActionBar"></activity>
     </application>
 
