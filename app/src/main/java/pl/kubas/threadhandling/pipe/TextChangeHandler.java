@@ -28,11 +28,11 @@ public class TextChangeHandler implements Runnable {
 
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) { //While current thread is working
             try {
                 int letterASCII;
                 while ((letterASCII = reader.read()) != -1) {
-                    char letter = (char) ((letterASCII + ENCRYPTION_SHIFT) % UPPER_BOUND);
+                    char letter = (char) ((letterASCII + ENCRYPTION_SHIFT) % UPPER_BOUND); //Character is transformed
                     Log.i(PipeActivity.TAG, "letter: " + letter);
                     timer.finishCounting();
                     addLetter(outputTextView, letter);

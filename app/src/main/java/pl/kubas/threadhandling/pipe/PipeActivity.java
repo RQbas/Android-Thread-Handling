@@ -58,8 +58,8 @@ public class PipeActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        workerThread.interrupt();
-        try {
+        workerThread.interrupt(); //Interrupt thread, stop processing
+        try {   //Closing pipe components
             reader.close();
             writer.close();
         } catch (IOException e) {
@@ -70,7 +70,7 @@ public class PipeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            onDestroy();
         }
 
         return super.onOptionsItemSelected(item);
@@ -96,7 +96,7 @@ public class PipeActivity extends AppCompatActivity {
         writer = new PipedWriter();
         reader = new PipedReader();
         try {
-            writer.connect(reader);
+            writer.connect(reader);   //Connect writer with reader
         } catch (IOException e) {
             Log.e(PipeActivity.TAG, Arrays.toString(e.getStackTrace()));
         }
@@ -109,7 +109,7 @@ public class PipeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) { //Get last entered char and process by writer
                 if (count > before) {
                     try {
                         char lastChar = charSequence.toString().charAt(charSequence.length() - 1);

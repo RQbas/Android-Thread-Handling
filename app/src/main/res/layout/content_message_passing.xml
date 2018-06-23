@@ -8,4 +8,23 @@
     tools:context=".messages.MessagePassingActivity"
     tools:showIn="@layout/activity_message_passing">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightGray"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <include layout="@layout/content_message_passing_bar"/>
+            <include layout="@layout/content_message_passing_description" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

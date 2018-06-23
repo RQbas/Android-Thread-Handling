@@ -23,13 +23,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/border_margin_horizontal"
-                android:src="@drawable/ic_pipe_white" />
+                android:src="@drawable/ic_letter_white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="@string/pipes"
+                android:text="@string/message_passing_title"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right"
                 android:layout_marginHorizontal="@dimen/border_margin_horizontal"
-                android:text="@string/pipes_description"
+                android:text="@string/message_passing_description"
                 android:textColor="@color/textPrimary"
                 android:textSize="14sp" />
 
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/border_margin_horizontal"
-                android:src="@drawable/pic_pipe" />
+                android:src="@drawable/pic_message_passing" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                 android:layout_gravity="center_vertical|right"
                 android:layout_marginBottom="@dimen/border_margin_horizontal"
                 android:layout_marginHorizontal="@dimen/border_margin_horizontal"
-                android:text="@string/pipes_example"
+                android:text="@string/message_passing_example"
                 android:textColor="@color/textPrimary"
                 android:textSize="14sp" />
         </LinearLayout>
