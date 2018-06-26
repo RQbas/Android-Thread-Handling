@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".messages.unidirectional.MessagePassingActivity"
-    tools:showIn="@layout/activity_message_passing">
-
+    tools:context=".messages.bidirectional.BidirectionalMessageActivity"
+    tools:showIn="@layout/activity_bidirectional_message">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,11 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <include layout="@layout/content_message_bidirectional_bar" />
 
-            <include layout="@layout/content_message_passing_bar" />
 
-            <include layout="@layout/content_message_passing_description" />
         </LinearLayout>
     </ScrollView>
-
 </android.support.constraint.ConstraintLayout>

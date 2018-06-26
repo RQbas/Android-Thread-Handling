@@ -14,11 +14,27 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="ProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+    <style name="ProgressBarGreen" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
         <item name="android:indeterminateTint">@color/green</item>
         <item name="android:secondaryProgressTint">@color/lightGray</item>
         <item name="android:progressBackgroundTint">@color/lightGray</item>
         <item name="android:progressTint">@color/green</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
+
+    <style name="ProgressBarPurple" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateTint">@color/purple</item>
+        <item name="android:secondaryProgressTint">@color/lightGray</item>
+        <item name="android:progressBackgroundTint">@color/lightGray</item>
+        <item name="android:progressTint">@color/purple</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
+
+    <style name="ProgressBarYellow" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateTint">@color/yellow</item>
+        <item name="android:secondaryProgressTint">@color/lightGray</item>
+        <item name="android:progressBackgroundTint">@color/lightGray</item>
+        <item name="android:progressTint">@color/yellow</item>
         <item name="android:minWidth">200dp</item>
     </style>
 

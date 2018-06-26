@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_info) {
-            Toast.makeText(this, "INFORMATION", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "INFORMATION", Toast.LENGTH_SHORT).show(); //TODO ADD SOME BIBLIOGRAPHY
             return true;
         }
 

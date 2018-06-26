@@ -15,6 +15,7 @@
             android:theme="@style/MainTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,9 +24,13 @@
             android:label="@string/title_activity_pipe"
             android:theme="@style/MainTheme.NoActionBar" />
         <activity
-            android:name=".messages.MessagePassingActivity"
+            android:name=".messages.unidirectional.MessagePassingActivity"
             android:label="@string/message_passing_title"
             android:theme="@style/MainTheme.NoActionBar" />
+        <activity
+            android:name=".messages.bidirectional.BidirectionalMessageActivity"
+            android:label="@string/bidirectional_passing_title"
+            android:theme="@style/MainTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

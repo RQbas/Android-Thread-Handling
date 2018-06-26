@@ -46,7 +46,7 @@
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            style="@style/ProgressBarGreen"
+            style="@style/ProgressBarPurple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/border_margin_horizontal"
@@ -66,7 +66,7 @@
             android:layout_marginHorizontal="@dimen/border_margin_horizontal"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/green"
+            app:cardBackgroundColor="@color/purple"
             app:cardCornerRadius="@dimen/cardview_corner_radius">
 
             <TextView
