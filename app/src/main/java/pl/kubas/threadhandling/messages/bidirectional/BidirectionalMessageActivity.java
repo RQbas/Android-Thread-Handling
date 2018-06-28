@@ -1,10 +1,10 @@
 package pl.kubas.threadhandling.messages.bidirectional;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +24,7 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
     public static final int SHOW_ORIGINAL_COLOR = 0;
     public static final int SHOW_NEW_COLOR = 1;
     private Handler uiHandler;
+    private BackgroundThread backgroundThread;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -34,8 +37,6 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
 
     @BindView(R.id.button_action)
     CardView actionButton;
-
-    private BackgroundThread backgroundThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +51,10 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
     }
 
     private void initUIHandler() {
-        uiHandler = new Handler() {
-
-            @Override
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case SHOW_ORIGINAL_COLOR:
-                        progressBar.setProgress(0);
-
-                        break;
-                    case SHOW_NEW_COLOR:
-                        progressBar.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
-                        break;
-                }
-            }
-        };
+        int initialColor = ContextCompat.getColor(this, R.color.purple);
+        int finalColor = ContextCompat.getColor(this, R.color.blue);
+        uiHandler = new UIHandler(progressBar, initialColor, finalColor);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -99,9 +87,36 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backgroundThread.performOperation();
+                backgroundThread.performOperation(progressBar);
             }
         });
     }
+
+    private static class UIHandler extends Handler {
+        private final WeakReference<ProgressBar> progressBar;
+        private final int finalColor;
+        private final int initialColor;
+
+        UIHandler(ProgressBar progressBar, int initialColor, int finalColor) {
+            this.progressBar = new WeakReference<>(progressBar);
+            this.initialColor = initialColor;
+            this.finalColor = finalColor;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SHOW_ORIGINAL_COLOR:
+                    progressBar.get().getProgressDrawable().setColorFilter(initialColor, PorterDuff.Mode.SRC_IN);
+                    progressBar.get().setProgress(0);
+
+                    break;
+                case SHOW_NEW_COLOR:
+                    progressBar.get().getProgressDrawable().setColorFilter(finalColor, PorterDuff.Mode.SRC_IN);
+                    break;
+            }
+        }
+    }
+
 
 }
