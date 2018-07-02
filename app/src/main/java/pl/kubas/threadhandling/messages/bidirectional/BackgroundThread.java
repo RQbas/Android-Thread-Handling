@@ -6,29 +6,33 @@ import android.os.Message;
 import android.widget.ProgressBar;
 
 public class BackgroundThread extends Thread {
-    private BackgroundHandler backgroundHandler;
+    private Handler backgroundHandler;
     private Handler uiHandler;
     private int progressStatus;
 
-    public BackgroundThread(Handler uiHandler) {
+    BackgroundThread(Handler uiHandler) {
         this.uiHandler = uiHandler;
     }
 
-    public void run() {
+    public void run() { //Associate Looper with the thread
         Looper.prepare();
-        backgroundHandler = new BackgroundHandler();
+        backgroundHandler = new Handler(); //Handler processes only runnables. It is not required to implement handleMessage(msg)
         Looper.loop();
     }
 
     public void performOperation(final ProgressBar progressBar) {
         backgroundHandler.post(new Runnable() {
             @Override
-            public void run() {
-                Message uiMsg = BackgroundThread.this.uiHandler.obtainMessage(BidirectionalMessageActivity.SHOW_ORIGINAL_COLOR, 0, 0, null);
-                BackgroundThread.this.uiHandler.sendMessage(uiMsg);
-                fillProgressbar(progressBar);
-                uiMsg = BackgroundThread.this.uiHandler.obtainMessage(BidirectionalMessageActivity.SHOW_NEW_COLOR, 0, 0, null);
-                BackgroundThread.this.uiHandler.sendMessage(uiMsg);
+            public void run() { //Post long task to be executed in the background
+                Message uiMSG;
+                //Create message with only SHOW_ORIGINAL_COLOR argument
+                uiMSG = BackgroundThread.this.uiHandler.obtainMessage(BidirectionalMessageActivity.SHOW_ORIGINAL_COLOR, 0, 0, null);
+                BackgroundThread.this.uiHandler.sendMessage(uiMSG); //Send start message to UI thread
+
+                fillProgressbar(progressBar); //Fill progress bar as a long time operation
+                //Message with information SHOW_NEW_COLOR as a end of long time operation
+                uiMSG = BackgroundThread.this.uiHandler.obtainMessage(BidirectionalMessageActivity.SHOW_NEW_COLOR, 0, 0, null);
+                BackgroundThread.this.uiHandler.sendMessage(uiMSG); //Message with end result is sent
             }
         });
     }
@@ -52,9 +56,5 @@ public class BackgroundThread extends Thread {
 
     public void exit() {
         backgroundHandler.getLooper().quit();
-    }
-
-    private static class BackgroundHandler extends Handler {
-
-    }
+    } //Quit the looper so thread can finish
 }

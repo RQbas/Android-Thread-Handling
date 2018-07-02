@@ -70,7 +70,7 @@ public class PipeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onDestroy();
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

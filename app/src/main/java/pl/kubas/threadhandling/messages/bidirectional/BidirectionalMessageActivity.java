@@ -47,13 +47,6 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
         initUIHandler();
         initBackgroundThread();
         initUIComponents();
-
-    }
-
-    private void initUIHandler() {
-        int initialColor = ContextCompat.getColor(this, R.color.purple);
-        int finalColor = ContextCompat.getColor(this, R.color.blue);
-        uiHandler = new UIHandler(progressBar, initialColor, finalColor);
     }
 
     @Override
@@ -68,7 +61,13 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        backgroundThread.exit();
+        backgroundThread.exit(); //The background thread is stopped when the activity is destroyed.
+    }
+
+    private void initUIHandler() {
+        int initialColor = ContextCompat.getColor(this, R.color.purple);
+        int finalColor = ContextCompat.getColor(this, R.color.blue);
+        uiHandler = new UIHandler(progressBar, actionButton, initialColor, finalColor);
     }
 
     private void initToolbar() {
@@ -80,7 +79,7 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
 
     private void initBackgroundThread() {
         this.backgroundThread = new BackgroundThread(uiHandler);
-        this.backgroundThread.start();
+        this.backgroundThread.start(); // Background thread with a message queue is started when the Activity is created. It handles tasks from the UI thread.
     }
 
     private void initUIComponents() {
@@ -88,17 +87,25 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 backgroundThread.performOperation(progressBar);
+                /*
+                 After click, new task is sent to background thread.
+                 As the taskswill be executed sequentially on the background thread,
+                 multiple button clicks may lead to queueing of tasks before they are processed.
+                */
             }
         });
     }
 
+
     private static class UIHandler extends Handler {
         private final WeakReference<ProgressBar> progressBar;
+        private final WeakReference<CardView> actionButton;
         private final int finalColor;
         private final int initialColor;
 
-        UIHandler(ProgressBar progressBar, int initialColor, int finalColor) {
+        UIHandler(ProgressBar progressBar, CardView actionButton, int initialColor, int finalColor) {
             this.progressBar = new WeakReference<>(progressBar);
+            this.actionButton = new WeakReference<>(actionButton);
             this.initialColor = initialColor;
             this.finalColor = finalColor;
         }
@@ -106,13 +113,15 @@ public class BidirectionalMessageActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case SHOW_ORIGINAL_COLOR:
+                case SHOW_ORIGINAL_COLOR:  //Show basic color for bar & button
+                    actionButton.get().setCardBackgroundColor(initialColor);
                     progressBar.get().getProgressDrawable().setColorFilter(initialColor, PorterDuff.Mode.SRC_IN);
                     progressBar.get().setProgress(0);
-
                     break;
-                case SHOW_NEW_COLOR:
+
+                case SHOW_NEW_COLOR: //Show final color for bar & button after fulfillment
                     progressBar.get().getProgressDrawable().setColorFilter(finalColor, PorterDuff.Mode.SRC_IN);
+                    actionButton.get().setCardBackgroundColor(finalColor);
                     break;
             }
         }

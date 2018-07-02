@@ -19,8 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <include layout="@layout/content_message_bidirectional_bar" />
-
-
+            <include layout="@layout/content_message_bidirectional_description"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
